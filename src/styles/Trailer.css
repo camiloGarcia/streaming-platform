@@ -1,0 +1,11 @@
+.trailer {
+    margin-bottom: 100px; /* Añadir espacio al final del trailer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .trailer iframe {
+    border: none; /* Asegúrate de que no haya bordes en el iframe */
+  }
+  

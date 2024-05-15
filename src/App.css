@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+main {
+  padding-bottom: 25px; /* Añadir espacio al final del contenido principal */
+}

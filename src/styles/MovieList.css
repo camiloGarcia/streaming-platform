@@ -1,0 +1,8 @@
+.movie-list {
+    padding-bottom: 100px; /* Añadir espacio al final del componente MovieList */
+  }
+  
+  .movie-list .movie-item:last-child {
+    margin-bottom: 100px; /* Asegura que la última tarjeta tenga un margen inferior adecuado */
+  }
+  

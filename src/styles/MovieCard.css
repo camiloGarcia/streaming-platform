@@ -1,0 +1,33 @@
+.movie-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f9f9;    
+  }
+  
+  .movie-card h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .movie-card p {
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  .movie-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 4px;
+  }
+  
+  .movie-card a:hover {
+    background-color: #0056b3;
+  }
+  
