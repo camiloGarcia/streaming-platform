@@ -8,6 +8,11 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    if (query.trim() === '') {
+      alert('Please enter a search term');
+      return;
+    }
+
     const movie = movies.find(movie =>
       movie.title.toLowerCase().includes(query.toLowerCase())
     );
@@ -18,24 +23,31 @@ const Header = () => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <header className="header bg-dark text-white py-3">
       <div className="container">
-        <div className="d-flex justify-content-between align-items-center">
-          <h1 className="mb-0">Streaming Platform</h1>
-          <nav>
-            <Link to="/" className="text-white mx-2">Home</Link>
+        <div className="header__top d-flex justify-content-between align-items-center">
+          <h1 className="header__title mb-0">Streaming Platform</h1>
+          <nav className="header__nav">
+            <Link to="/" className="header__link text-white mx-2">Home</Link>
           </nav>
         </div>
-        <div className="search-bar d-flex mt-3">
+        <div className="header__search-bar d-flex mt-3">
           <input
             type="text"
-            className="form-control"
+            className="header__input form-control"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyPress={handleKeyPress}  
             placeholder="Search for a movie..."
           />
-          <button className="btn btn-primary ml-2" onClick={handleSearch}>Search</button>
+          <button className="header__button btn btn-primary ml-2" onClick={handleSearch}>Search</button>
         </div>
       </div>
     </header>
