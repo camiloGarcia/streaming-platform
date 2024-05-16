@@ -19,20 +19,24 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <h1>Streaming Platform</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        {/* Eliminar el enlace "Rent a Movie" */}
-      </nav>
-      <div className="search-bar">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for a movie..."
-        />
-        <button onClick={handleSearch}>Search</button>
+    <header className="header bg-dark text-white py-3">
+      <div className="container">
+        <div className="d-flex justify-content-between align-items-center">
+          <h1 className="mb-0">Streaming Platform</h1>
+          <nav>
+            <Link to="/" className="text-white mx-2">Home</Link>
+          </nav>
+        </div>
+        <div className="search-bar d-flex mt-3">
+          <input
+            type="text"
+            className="form-control"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for a movie..."
+          />
+          <button className="btn btn-primary ml-2" onClick={handleSearch}>Search</button>
+        </div>
       </div>
     </header>
   );

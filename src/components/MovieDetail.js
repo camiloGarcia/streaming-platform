@@ -27,31 +27,33 @@ const MovieDetail = () => {
   };
 
   return (
-    <div className="movie-detail">
-      <div className="movie-detail-info">
-        <h2>{movie.title} ({movie.year})</h2>
-        <p><strong>Director:</strong> {movie.director}</p>
-        <p><strong>Synopsis:</strong> {movie.synopsis}</p>
-        <p><strong>Reviews:</strong> {movie.reviews}</p>
-        <p><strong>Duration:</strong> {movie.duration}</p>
-        <p><strong>Rent Price:</strong> ${movie.price}</p>
-        <p><strong>Buy Price:</strong> ${movie.buyPrice}</p>
-        <p><strong>Available:</strong> {movie.availability}</p>
-        <div className="movie-detail-buttons">
-          <button onClick={handleRent} disabled={movie.availability === 0}>Rent</button>
-          <button onClick={handleBuy} disabled={movie.availability === 0}>Buy</button>
+    <div className="container movie-detail">
+      <div className="row">
+        <div className="col-md-8 movie-detail-info">
+          <h2>{movie.title} ({movie.year})</h2>
+          <p><strong>Director:</strong> {movie.director}</p>
+          <p><strong>Synopsis:</strong> {movie.synopsis}</p>
+          <p><strong>Reviews:</strong> {movie.reviews}</p>
+          <p><strong>Duration:</strong> {movie.duration}</p>
+          <p><strong>Rent Price:</strong> ${movie.price}</p>
+          <p><strong>Buy Price:</strong> ${movie.buyPrice}</p>
+          <p><strong>Available:</strong> {movie.availability}</p>
+          <div className="movie-detail-buttons mt-3">
+            <button className="btn btn-success mr-2" onClick={handleRent} disabled={movie.availability === 0}>Rent</button>
+            <button className="btn btn-warning" onClick={handleBuy} disabled={movie.availability === 0}>Buy</button>
+          </div>
         </div>
-      </div>
-      <div className="movie-detail-video">
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${movie.videoId}`}
-          title="YouTube trailer"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <div className="col-md-4 movie-detail-video">
+          <iframe
+            width="100%"
+            height="315"
+            src={`https://www.youtube.com/embed/${movie.videoId}`}
+            title="YouTube trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </div>
   );

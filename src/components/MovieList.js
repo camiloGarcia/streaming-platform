@@ -7,14 +7,19 @@ const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
+    // Simular una llamada a la API para obtener las películas
     setMovieList(movies);
   }, []);
 
   return (
-    <div className="movie-list">
-      {movieList.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+    <div className="container movie-list">
+      <div className="row">
+        {movieList.map(movie => (
+          <div key={movie.id} className="col-md-4 mb-4">
+            <MovieCard movie={movie} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,46 +1,9 @@
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.movie-card {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-  margin: 10px;
-  text-align: center;
-  background-color: #f9f9f9;
-  flex-basis: calc(33.333% - 20px);
-  box-sizing: border-box;
-}
-
 .movie-card-image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  max-width: 150px; /* Ajustar el ancho máximo */
+  max-height: 150px; /* Ajustar la altura máxima */
   border-radius: 4px;
-}
-
-.movie-card h3 {
-  margin: 10px 0 0;
-  font-size: 20px;
-}
-
-.movie-card p {
-  margin: 10px 0;
-  color: #555;
-}
-
-.movie-card a {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 16px;
-  text-decoration: none;
-  color: white;
-  background-color: #007bff;
-  border-radius: 4px;
-}
-
-.movie-card a:hover {
-  background-color: #0056b3;
+  margin: 0 auto; /* Centrar la imagen horizontalmente */
+  display: block; /* Asegurarse de que el margen automático funcione */
 }
