@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import movies from '../moviesData';
+import moviesData from '../moviesData';
 import '../styles/MovieDetail.css';
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const movie = movies.find(m => m.id === parseInt(id));
+  const movieIndex = moviesData.findIndex(m => m.id === parseInt(id));
+  const [movies, setMovies] = useState(moviesData);
+  const movie = movies[movieIndex];
 
   if (!movie) {
     return <div>Movie not found</div>;
   }
 
   const handleRent = () => {
-    alert(`You have rented ${movie.title} for $${movie.price}`);
-    // Lógica para alquilar la película
+    if (movie.availability > 0) {
+      const updatedMovies = [...movies];
+      updatedMovies[movieIndex].availability -= 1;
+      setMovies(updatedMovies);
+      alert(`You have rented ${movie.title} for $${movie.price}`);
+    }
   };
 
   const handleBuy = () => {
-    alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
-    // Lógica para comprar la película
+    if (movie.availability > 0) {
+      const updatedMovies = [...movies];
+      updatedMovies[movieIndex].availability -= 1;
+      setMovies(updatedMovies);
+      alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
+    }
   };
 
   return (
@@ -31,9 +41,10 @@ const MovieDetail = () => {
         <p><strong>Duration:</strong> {movie.duration}</p>
         <p><strong>Rent Price:</strong> ${movie.price}</p>
         <p><strong>Buy Price:</strong> ${movie.buyPrice}</p>
+        <p><strong>Available:</strong> {movie.availability}</p>
         <div className="movie-detail-buttons">
-          <button onClick={handleRent}>Rent</button>
-          <button onClick={handleBuy}>Buy</button>
+          <button onClick={handleRent} disabled={movie.availability === 0}>Rent</button>
+          <button onClick={handleBuy} disabled={movie.availability === 0}>Buy</button>
         </div>
       </div>
       <div className="movie-detail-video">
