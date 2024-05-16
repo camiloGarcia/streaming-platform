@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
+import movies from '../moviesData';
 import '../styles/RentMovie.css';
-
-const movies = [
-  { id: 1, title: 'Movie 1', year: 2020, price: 4.99 },
-  { id: 2, title: 'Movie 2', year: 2021, price: 3.99 },
-  // ... otros datos de películas
-];
 
 const RentMovie = () => {
   const [query, setQuery] = useState('');
@@ -23,9 +18,14 @@ const RentMovie = () => {
     // Lógica para alquilar la película
   };
 
+  const handleBuy = (movie) => {
+    alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
+    // Lógica para comprar la película
+  };
+
   return (
     <div className="rent-movie">
-      <h2>Rent a Movie</h2>
+      <h2>Rent or Buy a Movie</h2>
       <div className="search-bar">
         <input
           type="text"
@@ -39,8 +39,14 @@ const RentMovie = () => {
         {results.map(movie => (
           <div key={movie.id} className="movie-item">
             <h3>{movie.title} ({movie.year})</h3>
-            <p>Price: ${movie.price}</p>
+            <p>Director: {movie.director}</p>
+            <p>Synopsis: {movie.synopsis}</p>
+            <p>Reviews: {movie.reviews}</p>
+            <p>Duration: {movie.duration}</p>
+            <p>Rent Price: ${movie.price}</p>
+            <p>Buy Price: ${movie.buyPrice}</p>
             <button onClick={() => handleRent(movie)}>Rent</button>
+            <button onClick={() => handleBuy(movie)}>Buy</button>
           </div>
         ))}
       </div>

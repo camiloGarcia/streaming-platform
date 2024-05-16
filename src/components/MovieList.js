@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import movies from '../moviesData';
 import MovieCard from './MovieCard';
 import '../styles/MovieList.css';
 
-const movies = [
-  { id: 1, title: 'Movie 1', year: 2020 },
-  { id: 2, title: 'Movie 2', year: 2021 },
-  // ... otros datos de películas
-];
-
 const MovieList = () => {
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    setMovieList(movies);
+  }, []);
+
   return (
     <div className="movie-list">
-      {movies.map(movie => (
+      {movieList.map(movie => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>

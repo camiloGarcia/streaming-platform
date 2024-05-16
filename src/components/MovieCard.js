@@ -5,8 +5,12 @@ import '../styles/MovieCard.css';
 const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
-      <h3>{movie.title}</h3>
-      <p>{movie.year}</p>
+      <img src={movie.imageUrl} alt={movie.title} className="movie-card-image" />
+      <h3>{movie.title} ({movie.year})</h3>
+      <p>Director: {movie.director}</p>
+      <p>Synopsis: {movie.synopsis}</p>
+      <p>Reviews: {movie.reviews}</p>
+      <p>Duration: {movie.duration}</p>
       <Link to={`/movie/${movie.id}`}>View Details</Link>
     </div>
   );
