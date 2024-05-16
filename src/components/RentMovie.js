@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import movies from '../moviesData';
+import useMovies from '../hooks/useMovies';
 import '../styles/RentMovie.css';
 
 const RentMovie = () => {
+  const { movies, updateAvailability } = useMovies();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -14,13 +15,19 @@ const RentMovie = () => {
   };
 
   const handleRent = (movie) => {
-    alert(`You have rented ${movie.title} for $${movie.price}`);
-    // Lógica para alquilar la película
+    if (movie.availability > 0) {
+      updateAvailability(movie.id, -1);
+      setResults([...results]);
+      alert(`You have rented ${movie.title} for $${movie.price}`);
+    }
   };
 
   const handleBuy = (movie) => {
-    alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
-    // Lógica para comprar la película
+    if (movie.availability > 0) {
+      updateAvailability(movie.id, -1);
+      setResults([...results]);
+      alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
+    }
   };
 
   return (
@@ -45,8 +52,9 @@ const RentMovie = () => {
             <p>Duration: {movie.duration}</p>
             <p>Rent Price: ${movie.price}</p>
             <p>Buy Price: ${movie.buyPrice}</p>
-            <button onClick={() => handleRent(movie)}>Rent</button>
-            <button onClick={() => handleBuy(movie)}>Buy</button>
+            <p>Available: {movie.availability}</p>
+            <button onClick={() => handleRent(movie)} disabled={movie.availability === 0}>Rent</button>
+            <button onClick={() => handleBuy(movie)} disabled={movie.availability === 0}>Buy</button>
           </div>
         ))}
       </div>

@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import moviesData from '../moviesData';
 
 const useMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(moviesData);
 
-  useEffect(() => {
-    // Simular llamada a API
-    setMovies([
-      { id: 1, title: 'Movie 1', year: 2020 },
-      { id: 2, title: 'Movie 2', year: 2021 },
-      // ... otros datos de películas
-    ]);
-  }, []);
+  const updateAvailability = (id, amount) => {
+    const movieIndex = movies.findIndex(movie => movie.id === id);
+    if (movieIndex !== -1) {
+      const updatedMovies = [...movies];
+      if (updatedMovies[movieIndex].availability + amount >= 0) {
+        updatedMovies[movieIndex].availability += amount;
+        setMovies(updatedMovies);
+      }
+    }
+  };
 
-  return movies;
+  return { movies, updateAvailability };
 };
 
 export default useMovies;

@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import moviesData from '../moviesData';
+import useMovies from '../hooks/useMovies';
 import '../styles/MovieDetail.css';
 
 const MovieDetail = () => {
+  const { movies, updateAvailability } = useMovies();
   const { id } = useParams();
-  const movieIndex = moviesData.findIndex(m => m.id === parseInt(id));
-  const [movies, setMovies] = useState(moviesData);
-  const movie = movies[movieIndex];
+  const movie = movies.find(m => m.id === parseInt(id));
 
   if (!movie) {
     return <div>Movie not found</div>;
@@ -15,18 +14,14 @@ const MovieDetail = () => {
 
   const handleRent = () => {
     if (movie.availability > 0) {
-      const updatedMovies = [...movies];
-      updatedMovies[movieIndex].availability -= 1;
-      setMovies(updatedMovies);
+      updateAvailability(movie.id, -1);
       alert(`You have rented ${movie.title} for $${movie.price}`);
     }
   };
 
   const handleBuy = () => {
     if (movie.availability > 0) {
-      const updatedMovies = [...movies];
-      updatedMovies[movieIndex].availability -= 1;
-      setMovies(updatedMovies);
+      updateAvailability(movie.id, -1);
       alert(`You have bought ${movie.title} for $${movie.buyPrice}`);
     }
   };
